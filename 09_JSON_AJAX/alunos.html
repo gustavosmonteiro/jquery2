@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>JSON</title>
+
+    <style>
+       
+
+    </style>
+
+    <script src="../js/jquery-3.2.0.min.js"></script>
+    <script>
+        $(document).ready(function(e){
+            
+            $("input").click(function(e){
+            $.getJSON("alunos.json", function(dados){
+                $("ul").empty();
+                
+                jQuery.each(dados, function(i, val){
+                    $("ul").append("<li>" + val.nome + "</li>");
+                    });
+                });
+            });
+        });
+        
+        
+    </script>
+</head>
+<body>
+
+<h1> JSON e Ajax com jquery</h1>
+
+<ul>
+    <li> Sem alunos </li>
+</ul>
+
+<input type="button" value="carregar">
+
+</body>
+</html>

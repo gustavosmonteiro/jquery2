@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Efeitos em Tabelas</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 600px;
+
+        }
+
+        thead {
+            font-weight: bold;
+        }
+
+        td {
+            border: 1px solid #f4f4f4;
+        }
+
+        .cinza {
+            background: #f4f4f4;
+        }
+
+        .verde {
+            background: greenyellow;
+        }
+
+        .destaque {
+            background: #cd0a0a;
+            color: #ffffff;
+        }
+
+    </style>
+
+    <script src="../js/jquery-3.2.0.min.js"></script>
+    <script>
+        
+        $(document).ready(function(e){
+            $("table tbody tr:odd").addClass("cinza");
+            $("table tbody tr:even").addClass("verde");
+            
+            $("table tbody tr").hover(
+                function(e){
+                    $(this).addClass("destaque");
+                },
+                function(e){
+                    $(this).removeClass("destaque");
+                }
+            );
+        })
+
+        
+
+    </script>
+
+</head>
+<body>
+
+<h1>Efeitos em Tabelas</h1>
+
+<div id="conteudo"></div>
+
+<table id="alunos">
+    <thead>
+        <tr>
+            <td>Nome</td>
+            <td>Email</td>
+            <td>Telefone</td>
+            <td>Aprovado</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Maria Joaquina</td>
+            <td>mariajoaquina@carrossel.com</td>
+            <td>10</td>
+            <td>Sim</td>
+        </tr>
+
+        <tr>
+            <td>Jaime Palilo</td>
+            <td>jp@carrossel.com</td>
+            <td>9</td>
+            <td>Não</td>
+        </tr>
+
+        <tr>
+            <td>Marcelina Guerra</td>
+            <td>mguerra@carrossel.com</td>
+            <td>8</td>
+            <td>Sim</td>
+        </tr>
+
+        <tr>
+            <td>Jorge Del Salto</td>
+            <td>delsalto@carrossel.com</td>
+            <td>10</td>
+            <td>Sim</td>
+        </tr>
+
+        <tr>
+            <td>Cirilo</td>
+            <td>cirilo@carrossel.com</td>
+            <td>9</td>
+            <td>Sim</td>
+        </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>

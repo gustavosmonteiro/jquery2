@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Parquinho do Idablio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        #conteudo {
+            background: #f4f4f4;
+            width: calc( 100% - 40px );
+            padding: 20px;
+            margin: 0 auto;
+            text-align: center;
+            overflow: auto;
+            -webkit-box-shadow: 0px 0px 6px 0px rgba(50, 50, 50, 0.5);
+            -moz-box-shadow:    0px 0px 6px 0px rgba(50, 50, 50, 0.5);
+            box-shadow:         0px 0px 6px 0px rgba(50, 50, 50, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #palco {
+            background: white;
+            height: 400px;
+            padding: 20px;
+        }
+
+        #controle {
+            background: #f4f4f4;
+            width: 100px;
+            float: left;
+        }
+
+        #controle ul {
+            padding: 5px;
+        }
+
+        #controle li {
+            list-style: none;
+        }
+
+        a:link, a:visited {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a:hover, a:active {
+            color: #000000;
+            background: white;
+        }
+
+        #area {
+            float: right;
+            background: #f4f4f4;
+            width: calc( 100% - 120px );
+            height: 100%;
+            background: url("imagens/parque.png") center;
+            background-size: 100% 100%;
+        }
+
+        #idablio {
+            position: absolute;
+            background:url("imagens/idabliosilva.png") no-repeat;
+            background-size: 100% 100%;
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+        }
+
+    </style>
+
+    <script src="../js/jquery-3.2.0.min.js"></script>
+
+    <script>
+        $(document).ready(function(e){
+            var vel = 20;
+            var idablio = $("#idablio");
+            
+            $("#btnVisivel").click(function(e){
+                idablio.show();
+            });
+            $("#btnNaoVisivel").click(function(e){
+                idablio.hide();
+                
+            });
+            $("#btnCima").click(function(e){
+                var novoTop = idablio.position().top - vel;
+                idablio.css("top", novoTop);
+                console.log(novoTop);
+                
+            });
+            $("#btnBaixo").click(function(e){
+                
+                var novoBot = idablio.position().top + vel;
+                if (novoBot <= 465){
+                    idablio.css("top", novoBot);
+                }
+                
+            });
+            $("#btnEsquerda").click(function(e){
+                
+                var novoLeft = idablio.position().left - vel;
+                idablio.css("left", novoLeft);
+                
+            });
+            $("#btnDireita").click(function(e){
+                
+                var novoRight = idablio.position().left + vel;
+                idablio.css("left", novoRight);
+                
+            });
+            $("#btnAumentar").click(function(e){
+                
+                var novoW = idablio.width() + vel;
+                var novoH = idablio.height() + vel;
+                
+                idablio.width(novoW);
+                idablio.height(novoH);
+                
+            });
+            $("#btnDiminuir").click(function(e){
+                
+                var novoW = idablio.width() - vel;
+                var novoH = idablio.height() - vel;
+                
+                idablio.width(novoW);
+                idablio.height(novoH);
+                
+            });
+            
+        });
+
+        
+
+    </script>
+
+</head>
+<body>
+
+<div id="conteudo">
+
+    <h1>Parquinho do Idablio</h1>
+
+    <div id="palco">
+
+        <div id="controle">
+            <ul>
+                <li><a href="#" id="btnVisivel" title="Visível">Visível</a></li>
+                <li><a href="#" id="btnNaoVisivel" title="Invisível">Invisível</a></li>
+                <li><a href="#" id="btnCima" title="Cima">Cima</a></li>
+                <li><a href="#" id="btnBaixo" title="Baixo">Baixo</a></li>
+                <li><a href="#" id="btnEsquerda" title="Esquerda">Esquerda</a></li>
+                <li><a href="#" id="btnDireita" title="Direita">Direita</a></li>
+                <li><a href="#" id="btnAumentar" title="Aumentar">Aumentar</a></li>
+                <li><a href="#" id="btnDiminuir" title="Diminuir">Diminuir</a></li>
+            </ul>
+        </div>
+
+        <div id="area">
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="idablio"></div>
+
+</body>
+</html>

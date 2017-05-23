@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Animação</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        #idablio {
+            position: absolute;
+            background:url("imagens/idabliosilva.png") no-repeat;
+            background-size: 100% 100%;
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+        }
+
+    </style>
+
+    <script src="../js/jquery-3.2.0.min.js"></script>
+    <script>
+        
+        $(document).ready(function(e){
+            
+            var idablio = $("#idablio");
+            
+            var propriedade = {
+                top : 100,
+                left : 50
+            }
+            
+            idablio.originalW = idablio.width();
+            idablio.originalH = idablio.height();
+            
+            idablio.click(function(e){
+                idablio.animate(propriedade, "slow");
+            });
+            
+            function efeitoEntrada(){
+                
+                this.stop();
+                
+                var finalH = this.originalH * 1.5;
+                var finalW = this.originalW * 1.5;
+                
+                this.animate({
+                    width: finalW,
+                    height: finalH
+                });
+            } 
+            function efeitoSaida(){
+                
+                this.stop();
+                
+                this.animate({
+                    width: this.originalW,
+                    height: this.originalH
+                });
+            }
+            
+            idablio.on("mouseover", efeitoEntrada.bind(idablio));
+            idablio.on("mouseout", efeitoSaida.bind(idablio));
+            
+            
+            
+        });
+
+        
+
+    </script>
+
+</head>
+<body>
+
+<h1>Animação</h1>
+
+<div id="idablio"></div>
+
+</body>
+</html>

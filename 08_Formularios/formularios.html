@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Efeitos em Formulários</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 50px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        span {
+            color: darkgray;
+            font-size: 10px;
+        }
+
+    </style>
+
+    <script src="../js/jquery-3.2.0.min.js"></script>
+    <script>
+
+       $(document).ready(function(e){
+           $("span").hide();
+           
+           $("p").focusin(function(e){
+               $(this).find("span").show();
+           });
+           
+           $("p").focusout(function(e){
+               $(this).find("span").hide();
+           });
+           
+           $("#ckxHabilitar").click(function(e){
+               if (this.checked){
+                   $("input[type=text]").attr("disabled", false);
+                } else{
+                    $("input[type=text]").attr("disabled", true);
+                }
+               
+           });
+                      
+       });
+
+    </script>
+
+</head>
+<body>
+
+<h1>Efeitos em Formulários</h1>
+
+<form name="contato">
+
+    <p>
+    <label for="txtNome">Nome:</label>
+    <input type="text" id="txtNome" dica="Digite seu nome.">
+    <span>Digite seu nome.</span>
+    </p>
+
+    <p>
+    <label for="txtTelefone">Telefone:</label>
+    <input type="text" id="txtTelefone" dica="Digite seu telefone.">
+    <span>Digite seu telefone.</span>
+    </p>
+
+    <p>
+        <input id="ckxHabilitar" type="checkbox" checked="true">
+        <label for="ckxHabilitar">Habilitar</label>
+    </p>
+</form>
+
+</body>
+</html>

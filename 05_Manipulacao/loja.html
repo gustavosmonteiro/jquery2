@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Loja da Manipulação do DOM</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #conteudo {
+            background: #f4f4f4;
+            width: 660px;
+            padding: 20px;
+            margin: 0 auto;
+            text-align: center;
+            overflow: auto;
+        }
+
+        #menu {
+            background: #e0e0e0;
+            text-align: center;
+            height: 35px;
+            padding-top: 15px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+            li {
+                display: inline;
+                margin: 0 40px;
+            }
+
+        input {
+            padding: 5px 10px;
+            background:white;
+            border: 0;
+        }
+
+        .escolhida {
+            border-bottom: 2px dotted gray;
+        }
+
+        #valor, #valorTotal {
+            height: 40px;
+            padding-top: 10px;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+
+    </style>
+
+    <script src="../js/jquery-3.2.0.min.js"></script>
+    <script>
+        $(document).ready(function(e){
+            
+            $("#btnMorango").click(function(e){
+                $("#morango").attr("src", "imagens/morango.png"); 
+                $("#morango").attr("alt", "morango"); 
+                $("#morango").attr("title", "morango"); 
+            });
+            
+            $("#btnLimao").click(function(e){
+                $("#limao").attr({
+                    src : "imagens/limao.png",
+                    alt : "limao",
+                    title : "limao"
+                });
+            });
+            
+            $("#btnPera").click(function(e){
+               $("ul").prepend('<li> <img id="pera" src="imagens/pera.png" alt= "pera" title="pera" valor="1.80"></li>'); 
+            });
+            
+//            $("img").click(function(e){
+//                $("img").removeClass("escolhida");
+//                $(this).addClass("escolhida");
+//                
+//            });
+//           
+            $("#conteudo").on("click", "img", function(e){
+                $("img").removeClass("escolhida");
+                $(this).addClass("escolhida");
+                
+                var valor = $(this).attr("valor");
+                $("#txtValor").attr("value", valor);
+            });
+            
+            
+            $(document).on("click", "#produtosDaLoja img", function(e){
+                var txtValorTotal = $("#txtValorTotal");
+                var total = 0;
+                var valor = JSON.parse( $(e.target).attr("valor") );
+                
+                if (txtValorTotal.val() != ""){
+                    total = JSON.parse(txtValorTotal.val());
+                }
+                
+                total += valor;
+                
+                txtValorTotal.val(total.toFixed(2));
+            });
+            
+        });
+
+       
+
+    </script>
+</head>
+<body>
+
+<div id="conteudo">
+
+    <h1>Loja da Manipulação do DOM</h1>
+
+    <div id="menu">
+        <input type="button" id="btnBanana" value="Banana">
+        <input type="button" id="btnMorango" value="Morango">
+        <input type="button" id="btnLimao" value="Limão">
+        <input type="button" id="btnPera" value="Pêra">
+    </div>
+
+    <ul id="produtosDaLoja">
+        <li><img id="banana" src="imagens/banana.png" alt="Banana" title="Banana" valor="1.20"></li>
+        <li><img id="morango" src="imagens/banana.png" alt="Banana" title="Banana" valor="1.80"></li>
+        <li><img id="limao" src="imagens/banana.png" alt="Banana" title="Banana" valor="2.50"></li>
+    </ul>
+
+    <div id="valor">
+        <label for="txtValor">Valor:</label>
+        <input type="text" id="txtValor" value="">
+    </div>
+
+    <p>
+        <label for="ddlEstados">Onde você está?</label>
+        <select id="ddlEstados">
+            <option value="CE">Ceará</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="BA">Bahia</option>
+        </select>
+    </p>
+
+    <hr>
+
+    <div id="valorTotal">
+        <label for="txtValorTotal">Valor Total (R$):</label>
+        <input type="text" id="txtValorTotal" value="">
+
+        <input id="btnComprar" type="button" value="Comprar">
+    </div>
+
+
+</div>
+
+</body>
+</html>
